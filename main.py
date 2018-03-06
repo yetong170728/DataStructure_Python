@@ -72,3 +72,7 @@ my_list2_sort2 = selectionSort(my_list2)
 print(my_list2,my_list2_sort,my_list2_sort2)
 #自己写的选择排序的测试程序
 
+#利用递归实现汉诺塔
+def myHanota(hanoNum):
+    #hano列表表示汉诺塔的每一堆得个数,默认全部堆到最右边
+    if

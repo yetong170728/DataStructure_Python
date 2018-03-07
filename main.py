@@ -4,6 +4,7 @@ Hanyu in 2018
 Last modified 3/5/2018
 '''
 import math
+import random # 用作快速排序随机选一个元素作为基准值
 
 def binarySearch(array,item):
     # 简单的二分查找法,必须经过排序的数组
@@ -55,21 +56,24 @@ def selectionSort(arr):
 
 # 自己写的快速排序
 def quickSort(arr):
-    if len(arr) < 1:
-        return []
-    elif len(arr) < 2:
+    if len(arr) < 2:
         return arr
     else:
-        base = arr[0]
+        base = random.choice(arr)
+        # 随机在arr中选择一个元素作为基准,这样平均复杂度为O(nlogn),如选择第一个元素,最糟复杂度为O(n**2)
         subArr1 = []
         subArr2 = []
-        for i in range(1,len(arr)):
+        for i in range(0,len(arr)):
             if arr[i] < base:
                 subArr1.append(arr[i])
             else:
                 subArr2.append(arr[i])
-        return quickSort(subArr1)+[base]+quickSort(subArr2)
-
+        # 注意:base值已经放在了subArr2里面,不用再返回了,否则会将所有元素复制一遍
+        return quickSort(subArr1) + quickSort(subArr2)
+        # 另一种写法,更加简洁:
+        # subArr1 = [item for item in arr[1:] if item <= base]
+        # subArr2 = [item for item in arr[1:] if item > base]
+        # return quickSort(subArr1) + quickSort(subArr2)
 
 # 简单二分查找的测试程序
 my_list = [1,3,5,7,9]

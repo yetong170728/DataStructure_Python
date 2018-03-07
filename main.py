@@ -6,7 +6,7 @@ Last modified 3/5/2018
 import math
 
 def binarySearch(array,item):
-    #简单的二分查找法,必须经过排序的数组
+    # 简单的二分查找法,必须经过排序的数组
     low = 0
     high = len(array)-1
     while (low <= high):
@@ -19,7 +19,7 @@ def binarySearch(array,item):
     return None
 
 def mySelSort(array):
-    #选择排序,自己写的版本,时间复杂度O(n**2),从大到小排序
+    # 选择排序,自己写的版本,时间复杂度O(n**2),从大到小排序
     arrayNew = array[:]
     # 注意在复制数组时,仅写数组名表示指针标识符一样,一改则全改
     # 所以必须加[:]或(:),这样表示数组的复制
@@ -53,6 +53,23 @@ def selectionSort(arr):
         newArr.append(arr.pop(smallest))
     return newArr
 
+# 自己写的快速排序
+def quickSort(arr):
+    if len(arr) < 1:
+        return []
+    elif len(arr) < 2:
+        return arr
+    else:
+        base = arr[0]
+        subArr1 = []
+        subArr2 = []
+        for i in range(1,len(arr)):
+            if arr[i] < base:
+                subArr1.append(arr[i])
+            else:
+                subArr2.append(arr[i])
+        return quickSort(subArr1)+[base]+quickSort(subArr2)
+
 
 # 简单二分查找的测试程序
 my_list = [1,3,5,7,9]
@@ -68,11 +85,13 @@ print(c)
 # 自己写的选择排序的测试程序
 my_list2 = [3,2.4,3.1415927,22,55,1e5,-20.5]
 my_list2_sort = mySelSort(my_list2[:])
-my_list2_sort2 = selectionSort(my_list2)
+my_list2_sort2 = selectionSort(my_list2[:])
 print(my_list2,my_list2_sort,my_list2_sort2)
-#自己写的选择排序的测试程序
+# 自己写的选择排序的测试程序
 
-#利用递归实现汉诺塔
-def myHanota(hanoNum):
-    #hano列表表示汉诺塔的每一堆得个数,默认全部堆到最右边
-    if
+# 自己写的快速排序的测试
+
+my_list2_qsort = quickSort(my_list2)
+print('quick sort:')
+print(my_list2,my_list2_qsort)  # 快速排序没有"毁掉"直接传入变量名的my_list2
+
